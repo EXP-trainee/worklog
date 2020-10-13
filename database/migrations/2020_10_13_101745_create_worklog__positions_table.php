@@ -15,6 +15,7 @@ class CreateWorklogPositionsTable extends Migration
     {
         Schema::create('worklog__positions', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }

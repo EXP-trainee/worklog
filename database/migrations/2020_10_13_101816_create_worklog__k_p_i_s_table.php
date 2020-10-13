@@ -15,6 +15,8 @@ class CreateWorklogKPISTable extends Migration
     {
         Schema::create('worklog__k_p_i_s', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->unsignedInteger('position_id');
             $table->timestamps();
         });
     }

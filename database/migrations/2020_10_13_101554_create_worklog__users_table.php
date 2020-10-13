@@ -15,6 +15,8 @@ class CreateWorklogUsersTable extends Migration
     {
         Schema::create('worklog__users', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->unsignedInteger('position_id');
             $table->timestamps();
         });
     }

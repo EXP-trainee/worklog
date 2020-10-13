@@ -15,6 +15,10 @@ class CreateWorklogReportsTable extends Migration
     {
         Schema::create('worklog__reports', function (Blueprint $table) {
             $table->id();
+            $table->string('value');
+            $table->date('date');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('kpi_id');
             $table->timestamps();
         });
     }
