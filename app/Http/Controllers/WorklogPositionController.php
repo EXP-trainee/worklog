@@ -14,7 +14,9 @@ class WorklogPositionController extends Controller
      */
     public function index()
     {
-        //
+        $items = Worklog_Position::all();
+        // dd($items);
+        return view('admin.worklog.kpis.index', compact('items'));
     }
 
     /**

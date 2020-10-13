@@ -14,7 +14,9 @@ class WorklogUserController extends Controller
      */
     public function index()
     {
-        //
+        $items = Worklog_User::all();
+        // dd($items);
+        return view('admin.worklog.kpis.index', compact('items'));
     }
 
     /**
@@ -24,7 +26,7 @@ class WorklogUserController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**

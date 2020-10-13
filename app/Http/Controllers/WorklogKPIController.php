@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Worklog_KPI;
+use App\Models\Worklog_Position;
 use Illuminate\Http\Request;
 
 class WorklogKPIController extends Controller
@@ -14,7 +15,9 @@ class WorklogKPIController extends Controller
      */
     public function index()
     {
-        //
+        $items = Worklog_KPI::all();
+        // dd($items);
+        return view('admin.worklog.kpis.index', compact('items'));
     }
 
     /**
@@ -24,7 +27,9 @@ class WorklogKPIController extends Controller
      */
     public function create()
     {
-        //
+        $position = Worklog_Position::all();
+        dd($position);
+        return view('admin.worklog.kpis.create',compact('position'));
     }
 
     /**

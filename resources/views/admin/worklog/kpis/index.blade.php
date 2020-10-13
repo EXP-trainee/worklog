@@ -1,13 +1,13 @@
 @extends('admin.default')
 
 @section('page-header')
-    Users <small>{{ trans('app.manage') }}</small>
+    KPI <small>{{ trans('app.manage') }}</small>
 @endsection
 
 @section('content')
 
     <div class="mB-20">
-        <a href="{{ route(ADMIN . '.dbusers.create') }}" class="btn btn-info">
+        <a href="{{ route(ADMIN . '.KPI.create') }}" class="btn btn-info">
             {{ trans('app.add_button') }}
         </a>
     </div>
@@ -18,25 +18,25 @@
             <table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Actions</th>
+                        <th>Position</th>
                     </tr>
                 </thead>
                 
                 <tfoot>
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Actions</th>
+                        <th>Position</th>
                     </tr>
                 </tfoot>
                 
                 <tbody>
                     @foreach ($items as $item)
                         <tr>
-                            <td><a href="{{ route(ADMIN . '.users.edit', $item->id) }}">{{ $item->name }}</a></td>
-                            <td>{{ $item->email }}</td>
+                            <td><a href="{{ route(ADMIN . '.users.edit', $item->id) }}">{{ $item->id }}</a></td>
+                            <td>{{ $item->name }}</td>
                             <td>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Worklog_KPI extends Model
 {
     use HasFactory;
+    protected $table = 'worklog__k_p_i_s';
 }

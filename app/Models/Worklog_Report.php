@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Worklog_Report extends Model
 {
     use HasFactory;
+    protected $table = 'worklog__reports';
 }
