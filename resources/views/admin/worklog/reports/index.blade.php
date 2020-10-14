@@ -1,13 +1,13 @@
 @extends('admin.default')
 
 @section('page-header')
-    KPI <small>{{ trans('app.manage') }}</small>
+    Report <small>{{ trans('app.manage') }}</small>
 @endsection
 
 @section('content')
 
     <div class="mB-20">
-        <a href="{{ route(ADMIN . '.users.create') }}" class="btn btn-info">
+        <a href="{{ route(ADMIN . '.report.create') }}" class="btn btn-info">
             {{ trans('app.add_button') }}
         </a>
     </div>
@@ -20,8 +20,10 @@
                     <tr>
                         <th>ID</th>
                         <th>Value</th>
+                        <th>User</th>
+                        <th>KPI</th>
                         <th>Date</th>
-                        <th>Position</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 
@@ -29,8 +31,10 @@
                     <tr>
                         <th>ID</th>
                         <th>Value</th>
+                        <th>User</th>
+                        <th>KPI</th>
                         <th>Date</th>
-                        <th>Position</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
                 
@@ -39,6 +43,8 @@
                         <tr>
                             <td><a href="{{ route(ADMIN . '.users.edit', $item->id) }}">{{ $item->id }}</a></td>
                             <td>{{ $item->value }}</td>
+                            <td>{{ $item->user->name }}</td>
+                            <td>{{ $item->kpi->name }}</td>
                             <td>{{ $item->date }}</td>
                             <td>
                                 <ul class="list-inline">

@@ -16,7 +16,7 @@ class WorklogPositionController extends Controller
     {
         $items = Worklog_Position::all();
         // dd($items);
-        return view('admin.worklog.kpis.index', compact('items'));
+        return view('admin.worklog.positions.index', compact('items'));
     }
 
     /**
@@ -26,7 +26,7 @@ class WorklogPositionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.worklog.positions.create');
     }
 
     /**
@@ -37,7 +37,10 @@ class WorklogPositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $position = new Worklog_Position;
+        $position->name = $request->name;
+        $position->save();
+        return redirect()->route('admin.position.index')->withSuccess(trans('app.success_store'));
     }
 
     /**
@@ -57,9 +60,10 @@ class WorklogPositionController extends Controller
      * @param  \App\Models\Worklog_Position  $worklog_Position
      * @return \Illuminate\Http\Response
      */
-    public function edit(Worklog_Position $worklog_Position)
+    public function edit($id)
     {
-        //
+        $item = Worklog_Position::findOrFail($id);
+        return view('admin.worklog.positions.edit',compact('item'));
     }
 
     /**
@@ -69,9 +73,12 @@ class WorklogPositionController extends Controller
      * @param  \App\Models\Worklog_Position  $worklog_Position
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Worklog_Position $worklog_Position)
+    public function update(Request $request, $id)
     {
-        //
+        $item = Worklog_Position::findOrFail($id);
+        $item ->name = $request->name;
+        $item->save();
+        return redirect()->route('admin.position.index')->withSuccess(trans('app.success_update'));
     }
 
     /**
@@ -80,8 +87,10 @@ class WorklogPositionController extends Controller
      * @param  \App\Models\Worklog_Position  $worklog_Position
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Worklog_Position $worklog_Position)
+    public function destroy($id)
     {
-        //
+        Worklog_Position::findOrFail($id)->delete();
+        return redirect()->route('admin.position.index')->withSuccess(trans('Xóa thành công'));
+
     }
 }

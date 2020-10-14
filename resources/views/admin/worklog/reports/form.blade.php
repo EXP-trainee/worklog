@@ -3,10 +3,13 @@
 		<div class="bgc-white p-20 bd">
             
             
-			{!! Form::myInput('text', 'name', 'Name') !!}
-            {!! Form::mySelect('position_id','Position',$arrPosition)!!}
+            {!! Form::myInput('text', 'value', 'Value') !!}
+
+            {!! Form::mySelect('user_id','User',$arrPosition)!!}
+
+            {!! Form::mySelect('kpi_id','KPI',$arrPosition)!!}
 		
-			<!-- {!! Form::myInput('email', 'email', 'Email') !!}
+			{{-- {!! Form::myInput('email', 'email', 'Email') !!}
 	
 			{!! Form::myInput('password', 'password', 'Password') !!}
 	
@@ -16,7 +19,7 @@
 	
 			{!! Form::myFile('avatar', 'Avatar') !!}
 	
-			{!! Form::myTextArea('bio', 'Bio') !!} -->
+			{!! Form::myTextArea('bio', 'Bio') !!} --}}
 		</div>  
 	</div>
 	@if (isset($item) && $item->avatar)

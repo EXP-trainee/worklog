@@ -1,17 +1,17 @@
 @extends('admin.default')
 
 @section('page-header')
-	User <small>{{ trans('app.add_new_item') }}</small>
+	Report <small>{{ trans('app.add_new_item') }}</small>
 @stop
 
 @section('content')
 	{!! Form::open([
-			'action' => ['WorklogKPIController@store'],
+			'action' => ['WorklogReportController@store'],
 			'files' => true
 		])
 	!!}
 
-		@include('admin.worklog.kpis.form')
+		@include('admin.worklog.reports.form')
 
 		<button type="submit" class="btn btn-primary">{{ trans('app.add_button') }}</button>
 		

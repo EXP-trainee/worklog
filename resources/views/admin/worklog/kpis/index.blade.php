@@ -20,7 +20,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Position</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 
@@ -28,23 +28,23 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Position</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
                 
                 <tbody>
                     @foreach ($items as $item)
                         <tr>
-                            <td><a href="{{ route(ADMIN . '.users.edit', $item->id) }}">{{ $item->id }}</a></td>
+                            <td><a href="{{ route(ADMIN . '.KPI.edit', $item->id) }}">{{ $item->id }}</a></td>
                             <td>{{ $item->name }}</td>
                             <td>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
-                                        <a href="{{ route(ADMIN . '.users.edit', $item->id) }}" title="{{ trans('app.edit_title') }}" class="btn btn-primary btn-sm"><span class="ti-pencil"></span></a></li>
+                                        <a href="{{ route(ADMIN . '.KPI.edit', $item->id) }}" title="{{ trans('app.edit_title') }}" class="btn btn-primary btn-sm"><span class="ti-pencil"></span></a></li>
                                     <li class="list-inline-item">
                                         {!! Form::open([
                                             'class'=>'delete',
-                                            'url'  => route(ADMIN . '.users.destroy', $item->id), 
+                                            'url'  => route(ADMIN . '.KPI.destroy', $item->id), 
                                             'method' => 'DELETE',
                                             ]) 
                                         !!}

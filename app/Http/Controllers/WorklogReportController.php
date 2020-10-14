@@ -15,8 +15,7 @@ class WorklogReportController extends Controller
     public function index()
     {
         $items = Worklog_Report::all();
-        // dd($items);
-        return view('admin.worklog.kpis.index', compact('items'));
+        return view('admin.worklog.reports.index', compact('items'));
     }
 
     /**
@@ -26,7 +25,7 @@ class WorklogReportController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.worklog.reports.create');
     }
 
     /**

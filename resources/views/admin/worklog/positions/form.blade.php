@@ -4,7 +4,6 @@
             
             
 			{!! Form::myInput('text', 'name', 'Name') !!}
-            {!! Form::mySelect('position_id','Position',$arrPosition)!!}
 		
 			<!-- {!! Form::myInput('email', 'email', 'Email') !!}
 	

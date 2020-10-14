@@ -28,8 +28,11 @@ class WorklogKPIController extends Controller
     public function create()
     {
         $position = Worklog_Position::all();
-        dd($position);
-        return view('admin.worklog.kpis.create',compact('position'));
+        $arrPosition = array();
+        foreach ($position as $item) {
+            $arrPosition[$item->id] = $item->name;
+        }
+        return view('admin.worklog.kpis.create',compact('arrPosition'));
     }
 
     /**
@@ -40,7 +43,11 @@ class WorklogKPIController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kpi = new Worklog_KPI;
+        $kpi->name = $request->name;
+        $kpi->position_id = $request->position_id;
+        $kpi->save();
+        return redirect()->route('admin.KPI.index')->withSuccess(trans('app.success_store'));
     }
 
     /**
@@ -60,9 +67,15 @@ class WorklogKPIController extends Controller
      * @param  \App\Models\Worklog_KPI  $worklog_KPI
      * @return \Illuminate\Http\Response
      */
-    public function edit(Worklog_KPI $worklog_KPI)
+    public function edit($id)
     {
-        //
+        $position = Worklog_Position::all();
+        $arrPosition = array();
+        foreach ($position as $item) {
+            $arrPosition[$item->id] = $item->name;
+        }
+        $item = Worklog_KPI::findOrFail($id);
+        return view('admin.worklog.kpis.edit',compact('item','arrPosition'));
     }
 
     /**
@@ -72,9 +85,13 @@ class WorklogKPIController extends Controller
      * @param  \App\Models\Worklog_KPI  $worklog_KPI
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Worklog_KPI $worklog_KPI)
+    public function update(Request $request, $id)
     {
-        //
+        $item = Worklog_KPI::findOrFail($id);
+        $item ->name = $request->name;
+        $item ->position_id = $request->position_id;
+        $item->save();
+        return redirect()->route('admin.KPI.index')->withSuccess(trans('app.success_update'));
     }
 
     /**
@@ -83,8 +100,9 @@ class WorklogKPIController extends Controller
      * @param  \App\Models\Worklog_KPI  $worklog_KPI
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Worklog_KPI $worklog_KPI)
+    public function destroy($id)
     {
-        //
+        $item = Worklog_KPI::findOrFail($id)->delete();
+        return redirect()->route('admin.KPI.index')->withSuccess(trans('Xóa thành công'));
     }
 }

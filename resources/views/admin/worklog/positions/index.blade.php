@@ -1,13 +1,13 @@
 @extends('admin.default')
 
 @section('page-header')
-    KPI <small>{{ trans('app.manage') }}</small>
+    Position <small>{{ trans('app.manage') }}</small>
 @endsection
 
 @section('content')
 
     <div class="mB-20">
-        <a href="{{ route(ADMIN . '.users.create') }}" class="btn btn-info">
+        <a href="{{ route(ADMIN . '.position.create') }}" class="btn btn-info">
             {{ trans('app.add_button') }}
         </a>
     </div>
@@ -20,7 +20,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Position</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 
@@ -28,23 +28,23 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Position</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
                 
                 <tbody>
                     @foreach ($items as $item)
                         <tr>
-                            <td><a href="{{ route(ADMIN . '.users.edit', $item->id) }}">{{ $item->id }}</a></td>
+                            <td><a href="{{ route(ADMIN . '.position.edit', $item->id) }}">{{ $item->id }}</a></td>
                             <td>{{ $item->name }}</td>
                             <td>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
-                                        <a href="{{ route(ADMIN . '.users.edit', $item->id) }}" title="{{ trans('app.edit_title') }}" class="btn btn-primary btn-sm"><span class="ti-pencil"></span></a></li>
+                                        <a href="{{ route(ADMIN . '.position.edit', $item->id) }}" title="{{ trans('app.edit_title') }}" class="btn btn-primary btn-sm"><span class="ti-pencil"></span></a></li>
                                     <li class="list-inline-item">
                                         {!! Form::open([
                                             'class'=>'delete',
-                                            'url'  => route(ADMIN . '.users.destroy', $item->id), 
+                                            'url'  => route(ADMIN . '.position.destroy', $item->id), 
                                             'method' => 'DELETE',
                                             ]) 
                                         !!}
