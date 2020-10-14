@@ -20,6 +20,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Position</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -28,6 +29,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Position</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -37,6 +39,7 @@
                         <tr>
                             <td><a href="{{ route(ADMIN . '.KPI.edit', $item->id) }}">{{ $item->id }}</a></td>
                             <td>{{ $item->name }}</td>
+                            <td>{{ $item->position->name }}</td>
                             <td>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">

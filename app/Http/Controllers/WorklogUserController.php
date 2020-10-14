@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Worklog_User;
+use App\Models\Worklog_Position;
 use Illuminate\Http\Request;
 
 class WorklogUserController extends Controller
@@ -16,7 +17,7 @@ class WorklogUserController extends Controller
     {
         $items = Worklog_User::all();
         // dd($items);
-        return view('admin.worklog.kpis.index', compact('items'));
+        return view('admin.worklog.users.index', compact('items'));
     }
 
     /**
@@ -26,7 +27,12 @@ class WorklogUserController extends Controller
      */
     public function create()
     {
-       
+        $position = Worklog_Position::all();
+        $arrPosition = array();
+        foreach ($position as $item) {
+            $arrPosition[$item->id] = $item->name;
+        }
+        return view('admin.worklog.users.create',compact('arrPosition'));
     }
 
     /**
@@ -37,7 +43,11 @@ class WorklogUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kpi = new Worklog_User;
+        $kpi->name = $request->name;
+        $kpi->position_id = $request->position_id;
+        $kpi->save();
+        return redirect()->route('admin.users.index')->withSuccess(trans('app.success_store'));
     }
 
     /**
@@ -57,9 +67,15 @@ class WorklogUserController extends Controller
      * @param  \App\Models\Worklog_User  $worklog_User
      * @return \Illuminate\Http\Response
      */
-    public function edit(Worklog_User $worklog_User)
+    public function edit($id)
     {
-        //
+        $position = Worklog_Position::all();
+        $arrPosition = array();
+        foreach ($position as $item) {
+            $arrPosition[$item->id] = $item->name;
+        }
+        $item = Worklog_User::findOrFail($id);
+        return view('admin.worklog.users.edit',compact('item','arrPosition'));
     }
 
     /**
@@ -69,9 +85,13 @@ class WorklogUserController extends Controller
      * @param  \App\Models\Worklog_User  $worklog_User
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Worklog_User $worklog_User)
+    public function update(Request $request, $id)
     {
-        //
+        $item = Worklog_User::findOrFail($id);
+        $item ->name = $request->name;
+        $item ->position_id = $request->position_id;
+        $item->save();
+        return redirect()->route('admin.users.index')->withSuccess(trans('app.success_update'));
     }
 
     /**
@@ -80,8 +100,9 @@ class WorklogUserController extends Controller
      * @param  \App\Models\Worklog_User  $worklog_User
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Worklog_User $worklog_User)
+    public function destroy($id)
     {
-        //
+        $item = Worklog_User::findOrFail($id)->delete();
+        return redirect()->route('admin.users.index')->withSuccess(trans('Xóa thành công'));
     }
 }

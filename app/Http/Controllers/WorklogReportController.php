@@ -99,7 +99,13 @@ class WorklogReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $item = Worklog_Report::findOrFail($id);
+        $item ->value = $request->value;
+        $item ->date = $request->date;
+        $item ->user_id = $request->user_id;
+        $item ->kpi_id = $request->kpi_id;
+        $item->save();
+        return redirect()->route('admin.report.index')->withSuccess(trans('app.success_update'));
     }
 
     /**

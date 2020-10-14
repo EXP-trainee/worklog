@@ -1,7 +1,7 @@
 @extends('admin.default')
 
 @section('page-header')
-    KPI <small>{{ trans('app.manage') }}</small>
+    User <small>{{ trans('app.manage') }}</small>
 @endsection
 
 @section('content')
@@ -21,6 +21,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Position</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 
@@ -29,6 +30,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Position</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
                 
@@ -37,6 +39,7 @@
                         <tr>
                             <td><a href="{{ route(ADMIN . '.users.edit', $item->id) }}">{{ $item->id }}</a></td>
                             <td>{{ $item->name }}</td>
+                            <td>{{ $item->position->name }}</td>
                             <td>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
