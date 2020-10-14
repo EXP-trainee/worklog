@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Worklog_Report;
+use App\Models\Worklog_User;
+use App\Models\Worklog_KPI;
 use Illuminate\Http\Request;
 
 class WorklogReportController extends Controller
@@ -25,7 +27,17 @@ class WorklogReportController extends Controller
      */
     public function create()
     {
-        return view('admin.worklog.reports.create');
+        $user = Worklog_User::all();
+        $arrUser = array();
+        foreach ($user as $item) {
+            $arrUser[$item->id] = $item->name;
+        }
+        $kpi = Worklog_KPI::all();
+        $arrKPI = array();
+        foreach ($kpi as $item) {
+            $arrKPI[$item->id] = $item->name;
+        }
+        return view('admin.worklog.reports.create',compact('arrUser','arrKPI'));
     }
 
     /**
@@ -36,7 +48,13 @@ class WorklogReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $report = new Worklog_Report;
+        $report ->value = $request->value;
+        $report ->user_id = $request->user_id;
+        $report ->kpi_id = $request->kpi_id;
+        $report ->date = $request->date;
+        $report->save();
+        return redirect()->route('admin.report.index')->withSuccess(trans('app.success_store'));
     }
 
     /**
@@ -56,9 +74,20 @@ class WorklogReportController extends Controller
      * @param  \App\Models\Worklog_Report  $worklog_Report
      * @return \Illuminate\Http\Response
      */
-    public function edit(Worklog_Report $worklog_Report)
+    public function edit($id)
     {
-        //
+        $user = Worklog_User::all();
+        $arrUser = array();
+        foreach ($user as $item) {
+            $arrUser[$item->id] = $item->name;
+        }
+        $kpi = Worklog_KPI::all();
+        $arrKPI = array();
+        foreach ($kpi as $item) {
+            $arrKPI[$item->id] = $item->name;
+        }
+        $item = Worklog_Report::findOrFail($id);
+        return view('admin.worklog.reports.edit',compact('item','arrUser','arrKPI'));
     }
 
     /**
@@ -68,9 +97,9 @@ class WorklogReportController extends Controller
      * @param  \App\Models\Worklog_Report  $worklog_Report
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Worklog_Report $worklog_Report)
+    public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -79,8 +108,9 @@ class WorklogReportController extends Controller
      * @param  \App\Models\Worklog_Report  $worklog_Report
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Worklog_Report $worklog_Report)
+    public function destroy($id)
     {
-        //
+        Worklog_Report::findOrFail($id)->delete();
+        return redirect()->route('admin.report.index')->withSuccess(trans('Xóa thành công nha'));
     }
 }

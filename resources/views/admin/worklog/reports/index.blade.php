@@ -41,7 +41,7 @@
                 <tbody>
                     @foreach ($items as $item)
                         <tr>
-                            <td><a href="{{ route(ADMIN . '.users.edit', $item->id) }}">{{ $item->id }}</a></td>
+                            <td><a href="{{ route(ADMIN . '.report.edit', $item->id) }}">{{ $item->id }}</a></td>
                             <td>{{ $item->value }}</td>
                             <td>{{ $item->user->name }}</td>
                             <td>{{ $item->kpi->name }}</td>
@@ -49,11 +49,11 @@
                             <td>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
-                                        <a href="{{ route(ADMIN . '.users.edit', $item->id) }}" title="{{ trans('app.edit_title') }}" class="btn btn-primary btn-sm"><span class="ti-pencil"></span></a></li>
+                                        <a href="{{ route(ADMIN . '.report.edit', $item->id) }}" title="{{ trans('app.edit_title') }}" class="btn btn-primary btn-sm"><span class="ti-pencil"></span></a></li>
                                     <li class="list-inline-item">
                                         {!! Form::open([
                                             'class'=>'delete',
-                                            'url'  => route(ADMIN . '.users.destroy', $item->id), 
+                                            'url'  => route(ADMIN . '.report.destroy', $item->id), 
                                             'method' => 'DELETE',
                                             ]) 
                                         !!}

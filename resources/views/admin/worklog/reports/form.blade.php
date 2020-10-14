@@ -5,9 +5,12 @@
             
             {!! Form::myInput('text', 'value', 'Value') !!}
 
-            {!! Form::mySelect('user_id','User',$arrPosition)!!}
+            {!! Form::mySelect('user_id','User',$arrUser)!!}
 
-            {!! Form::mySelect('kpi_id','KPI',$arrPosition)!!}
+            {!! Form::mySelect('kpi_id','KPI',$arrKPI)!!}
+
+            {!! Form::myInput('date', 'date', 'Date') !!}
+
 		
 			{{-- {!! Form::myInput('email', 'email', 'Email') !!}
 	
