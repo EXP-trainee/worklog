@@ -27,6 +27,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
+        if ($this->app->isLocal()) {
+            $this->app['request']->server->set('HTTPS', false);
+        } else {
+            $this->app['request']->server->set('HTTPS', 'on');
+        }
         if (!defined('ADMIN')) {
             define('ADMIN', config('variables.APP_ADMIN', 'admin'));
         }
