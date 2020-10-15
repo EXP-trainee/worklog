@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="mB-20">
-        <a href="{{ route(ADMIN . '.dbusers.create') }}" class="btn btn-info">
+        <a href="{{ route(ADMIN . '.users.create') }}" class="btn btn-info">
             {{ trans('app.add_button') }}
         </a>
     </div>
