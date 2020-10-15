@@ -1,6 +1,8 @@
 <?php
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('memberlogin','MemberController@getLogin')->name('memberlogin');
+Route::post('memberlogin', 'MemberController@postLogin')->name('memberlogin');
 Auth::routes();
 
 /*
@@ -15,6 +17,11 @@ Route::group(['prefix' => ADMIN, 'as' => ADMIN . '.', 'middleware'=>['auth', 'Ro
     Route::resource('position', 'WorklogPositionController');
     Route::resource('report', 'WorklogReportController');
     Route::resource('users', 'WorklogUserController');
+});
+
+Route::group(['prefix'=>'member','middleware'=>'memberlogin'],function(){
+    Route::get('index.html','MemberController@index')->name('index');
+    Route::get('update.html','MemberController@update')->name('update');
 });
 
 

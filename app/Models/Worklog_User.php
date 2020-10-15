@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class Worklog_User extends Model
+class Worklog_User extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
+    protected $guard = 'member';
     protected $table = 'worklog__users';
     public function position()
     {

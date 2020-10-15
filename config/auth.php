@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'member' =>[
+            'driver' => 'session',
+            'provider' => 'worklog__users',
+        ],
     ],
 
     /*
@@ -75,6 +80,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'member' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Worklog_User::class,
+        ],
     ],
 
     /*
@@ -95,6 +105,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'member' => [
+            'provider' => 'worklog__users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
