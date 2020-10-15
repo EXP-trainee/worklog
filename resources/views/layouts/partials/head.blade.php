@@ -9,13 +9,14 @@
 
     <!-- Styles -->
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('images/avt_dc.png')  }}" type="image/png"/>
     {{-- <link href="{{ mix('/css/rtl.css') }}" rel="stylesheet"> --}}
-    
+
     <!-- Global css content -->
 
     <!-- End of global css content-->
 
     <!-- Specific css content placeholder -->
     @stack('css')
-    <!-- End of specific css content placeholder --> 
+    <!-- End of specific css content placeholder -->
 </head>
